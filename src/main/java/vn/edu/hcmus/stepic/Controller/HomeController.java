@@ -25,7 +25,7 @@ public class HomeController {
     @GetMapping("/index")
     public ResponseEntity<Object> homePage() {
         HashMap<String, Object> home = new HashMap();
-        home.put("User", userService.getCurrentAuthentication());
+        home.put("User", userService.getCurrentUser());
         home.put("Product", productService.findAll());
         return ResponseEntity.ok().body(home);
     }

@@ -52,4 +52,11 @@ public class UserService implements UserDetailsService{
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
+    public UserEntity getCurrentUser(){
+        Authentication authentication = getCurrentAuthentication();
+        UserEntity user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User not present"));
+        return user;
+    }
+
 }

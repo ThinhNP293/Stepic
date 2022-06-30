@@ -27,7 +27,7 @@ public class ProductService {
 
     public ProductEntity findByProductId(Long id){
         ProductEntity product = productRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Product is not existt!"));
+                .orElseThrow(() -> new IllegalStateException("Product is not exist!"));
         return product;
     }
     public ResponseEntity createProduct(ProductEntity product){
