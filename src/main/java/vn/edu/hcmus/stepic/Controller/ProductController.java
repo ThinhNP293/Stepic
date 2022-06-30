@@ -32,19 +32,19 @@ public class ProductController {
     }
 
     //STORE
-    @PreAuthorize("hasAnyAuthority('STORE')")
+    //@PreAuthorize("hasAnyAuthority('STORE')")
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody ProductEntity product){
         return productService.createProduct(product);
     }
 
-    @PreAuthorize("hasAnyAuthority('STORE')")
+    //@PreAuthorize("hasAnyAuthority('STORE')")
     @PutMapping("/update/{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody ProductEntity product){
         return productService.updateProduct(id, product);
     }
 
-    @PreAuthorize("hasAnyAuthority('STORE')")
+    //@PreAuthorize("hasAnyAuthority('STORE')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id){
         return productService.deleteProduct(id);

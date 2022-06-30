@@ -14,19 +14,5 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class HomeController {
-    private final UserService userService;
-    private final ProductService productService;
 
-    public HomeController(UserService userService, ProductService productService) {
-        this.userService = userService;
-        this.productService = productService;
-    }
-
-    @GetMapping("/index")
-    public ResponseEntity<Object> homePage() {
-        HashMap<String, Object> home = new HashMap();
-        home.put("User", userService.getCurrentUser());
-        home.put("Product", productService.findAll());
-        return ResponseEntity.ok().body(home);
-    }
 }

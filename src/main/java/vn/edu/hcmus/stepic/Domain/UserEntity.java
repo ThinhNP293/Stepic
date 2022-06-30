@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties(value = "password")
 @Table(name = "user_tbl")
 public class UserEntity
 {
