@@ -53,5 +53,8 @@ public class ProductService {
         productRepository.deleteById(id);
         return ResponseEntity.ok().body(null);
     }
+    public ResponseEntity searchProduct(String keyword) {    
+        return ResponseEntity.ok().body(new ResponseBody(productRepository.searchProduct(keyword)));
+    }
 }
 

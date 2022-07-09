@@ -49,4 +49,9 @@ public class ProductController {
     public ResponseEntity delete(@PathVariable("id") Long id){
         return productService.deleteProduct(id);
     }
+
+    @GetMapping("/search?q={keyword}")
+    public ResponseEntity<ProductEntity> findByProductId(@PathVariable("keyword") String keyword){
+        return productService.searchProduct(keyword);
+    }
 }
