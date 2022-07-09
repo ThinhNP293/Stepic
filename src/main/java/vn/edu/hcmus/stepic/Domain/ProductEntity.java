@@ -1,8 +1,6 @@
 package vn.edu.hcmus.stepic.Domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,16 +11,28 @@ import java.util.Date;
 @Setter
 @ToString
 @Table(name="product_tbl")
-public class ProductEntity implements Serializable {
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    private int price;
-
     private String brand;
 
-    private Date date = new Date();
+    private int price;
+
+    private float discount;
+
+    private String logoImage;
+
+    private String gameImage;
+
+    private String description;
+
+    private Date publishDate;
+
+    private long purchaseAmount;
+
+    private float rating;
 }

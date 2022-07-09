@@ -35,8 +35,18 @@ public class ProductService {
     }
     public ResponseEntity updateProduct(long id, ProductEntity product) {
         ProductEntity updateProduct = findByProductId(id);
+
         updateProduct.setName(product.getName());
+        updateProduct.setBrand(product.getBrand());
         updateProduct.setPrice(product.getPrice());
+        updateProduct.setDiscount(product.getDiscount());
+        updateProduct.setLogoImage(product.getLogoImage());
+        updateProduct.setGameImage(product.getGameImage());
+        updateProduct.setDescription(product.getDescription());
+        updateProduct.setPublishDate(product.getPublishDate());
+        updateProduct.setPurchaseAmount(product.getPurchaseAmount());
+        updateProduct.setRating(product.getRating());
+
         return ResponseEntity.ok().body(new ResponseBody("Update success!", productRepository.save(updateProduct)));
     }
     public ResponseEntity deleteProduct(Long id) {
