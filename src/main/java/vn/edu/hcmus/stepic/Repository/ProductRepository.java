@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import vn.edu.hcmus.stepic.Domain.ProductEntity;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
-    @Query("select product from ProductEntity product where product.name like :keyword")
+    @Query("select product from ProductEntity product where lower(product.name) like lower(concat(:keyword,'%'))")
     List<ProductEntity> searchProduct(@Param("keyword") String keyword);
 }
 

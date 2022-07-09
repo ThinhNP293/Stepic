@@ -37,13 +37,14 @@ public class UserService implements UserDetailsService{
         return userDetails;
     }
 
-    public ResponseEntity createUser(UserEntity user){
+    public ResponseEntity<?> createUser(UserEntity user){
         boolean exist = userRepository.existsByEmail(user.getEmail());
         if (exist){
             return ResponseEntity.badRequest().body(new ResponseBody("Email existed!"));
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("USER");
+        user.setBalance(0);
         userRepository.save(user);
         return ResponseEntity.created(null).body(new ResponseBody("Register success!"));
     }
@@ -52,11 +53,12 @@ public class UserService implements UserDetailsService{
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public UserEntity getCurrentUser(){
+    public ResponseEntity<?> getCurrentUser(){
         Authentication authentication = getCurrentAuthentication();
         UserEntity user = userRepository.findByEmail(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));
-        return user;
+
+        return ResponseEntity.ok().body(new ResponseBody(user));
     }
 
 }

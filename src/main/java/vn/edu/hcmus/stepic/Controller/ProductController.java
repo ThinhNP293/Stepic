@@ -50,8 +50,8 @@ public class ProductController {
         return productService.deleteProduct(id);
     }
 
-    @GetMapping("/search?q={keyword}")
-    public ResponseEntity<ProductEntity> findByProductId(@PathVariable("keyword") String keyword){
+    @GetMapping("/search")
+    public ResponseEntity<ProductEntity> findByProductId(@RequestBody String keyword){
         return productService.searchProduct(keyword);
     }
 }

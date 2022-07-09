@@ -31,6 +31,7 @@ public class UserEntity
 
     private float balance;
 
+    @ManyToMany
     private List<ProductEntity> ownedGame;
 
     private String role;

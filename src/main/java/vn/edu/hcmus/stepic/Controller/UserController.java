@@ -6,7 +6,7 @@ import vn.edu.hcmus.stepic.Domain.UserEntity;
 import vn.edu.hcmus.stepic.Service.UserService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api")
 public class UserController {
     private final UserService userService;
 
@@ -14,8 +14,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity register(@RequestBody UserEntity user){
+    @GetMapping("/user")
+    public ResponseEntity<?> getCurrentUser(){
+        return userService.getCurrentUser();
+    }
+
+    @PostMapping("/auth/register")
+    public ResponseEntity<?> register(@RequestBody UserEntity user){
         return userService.createUser(user);
     }
 }
