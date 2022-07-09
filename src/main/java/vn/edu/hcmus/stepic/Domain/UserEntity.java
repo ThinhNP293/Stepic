@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,12 +20,18 @@ public class UserEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    private String name;
-
     @Column(unique = true)
     private String email;
 
     private String password;
+
+    private String firstName;
+
+    private String lastName;
+
+    private float balance;
+
+    private List<ProductEntity> ownedGame;
 
     private String role;
 }
