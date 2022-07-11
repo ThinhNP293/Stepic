@@ -61,4 +61,10 @@ public class UserService implements UserDetailsService{
         return ResponseEntity.ok().body(new ResponseBody(user));
     }
 
+    public ResponseEntity<?> getCurrentUserByEmail(String email) {
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not present"));
+
+        return ResponseEntity.ok().body(new ResponseBody(user));
+    }
 }

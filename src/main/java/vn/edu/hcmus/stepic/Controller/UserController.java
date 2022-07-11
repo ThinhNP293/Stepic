@@ -15,8 +15,8 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<?> getCurrentUser(){
-        return userService.getCurrentUser();
+    public ResponseEntity<?> getCurrentUser(@RequestBody String email){
+        return userService.getCurrentUserByEmail(email);
     }
 
     @PostMapping("/auth/register")
