@@ -1,5 +1,6 @@
 package vn.edu.hcmus.stepic.Domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class ProductEntity {
 
     private String description;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date publishDate;
 
     private long purchaseAmount;
