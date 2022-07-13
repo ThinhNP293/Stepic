@@ -31,7 +31,7 @@ public class ProductEntity {
 
     private String description;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishDate;
 
     private long purchaseAmount;
