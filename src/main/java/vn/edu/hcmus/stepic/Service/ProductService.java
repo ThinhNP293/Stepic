@@ -57,5 +57,10 @@ public class ProductService {
         ResponseBody responseBody = new ResponseBody(productRepository.searchProduct(keyword));
         return ResponseEntity.ok().body(responseBody);
     }
+    public ResponseEntity buyProduct(Long id) {
+        Optional<ProductEntity> product = productRepository.findById(id);
+        ResponseBody body = new ResponseBody(userService.addProduct(product.get()));
+        return ResponseEntity.ok().body(body);
+    }
 }
 

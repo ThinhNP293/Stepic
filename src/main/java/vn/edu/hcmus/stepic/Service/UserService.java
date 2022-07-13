@@ -11,8 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import vn.edu.hcmus.stepic.Base.ResponseBody;
+import vn.edu.hcmus.stepic.Domain.ProductEntity;
 import vn.edu.hcmus.stepic.Domain.UserEntity;
 import vn.edu.hcmus.stepic.Repository.UserRepository;
 
@@ -67,4 +69,13 @@ public class UserService implements UserDetailsService{
 
         return ResponseEntity.ok().body(new ResponseBody(user));
     }
+    
+    @Transactional
+    public ResponseEntity addProduct(ProductEntity product) {
+        ResponseEntity<?> user = getCurrentUser();
+        UserEntity userEntity = (UserEntity) user.getBody();
+        userEntity.getOwnedGame().add(product);
+        return null;
+    }
+
 }

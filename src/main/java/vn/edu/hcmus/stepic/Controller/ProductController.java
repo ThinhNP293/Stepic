@@ -54,4 +54,9 @@ public class ProductController {
     public ResponseEntity<ProductEntity> findByProductId(@RequestBody String keyword){
         return productService.searchProduct(keyword);
     }
+
+    @PostMapping("/buy")
+    public ResponseEntity<ProductEntity> buyProduct(@RequestBody Long id){
+        return productService.buyProduct(id);
+    }
 }
