@@ -14,7 +14,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @PostMapping("/user")
     public ResponseEntity<?> getCurrentUser(@RequestBody String email){
         return userService.getCurrentUserByEmail(email);
     }
