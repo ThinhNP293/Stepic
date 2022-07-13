@@ -22,6 +22,7 @@ public class ProductController {
     }
 
     @GetMapping()
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<ProductEntity>> findAll(){
         return ResponseEntity.ok(productService.findAll());
     }
