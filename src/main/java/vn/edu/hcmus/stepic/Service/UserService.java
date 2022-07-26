@@ -18,6 +18,8 @@ import vn.edu.hcmus.stepic.Domain.ProductEntity;
 import vn.edu.hcmus.stepic.Domain.UserEntity;
 import vn.edu.hcmus.stepic.Repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService implements UserDetailsService{
     private final UserRepository userRepository;
@@ -64,10 +66,13 @@ public class UserService implements UserDetailsService{
     }
 
     public ResponseEntity<?> getCurrentUserByEmail(String email) {
-        UserEntity user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not present"));
-
-        return ResponseEntity.ok().body(new ResponseBody(user));
+        Optional<UserEntity> user = userRepository.findByEmail(email);
+        if (user.isPresent()){
+            return ResponseEntity.ok().body(new ResponseBody(user));
+        }
+        else{
+            return ResponseEntity.badRequest().body(new ResponseBody("User not exist!"));
+        }
     }
     
     @Transactional
