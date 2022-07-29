@@ -1,11 +1,22 @@
 package vn.edu.hcmus.stepic.Domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -37,4 +48,8 @@ public class ProductEntity {
     private long purchaseAmount;
 
     private float rating;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private List<String> genres;
 }

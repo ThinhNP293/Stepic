@@ -1,7 +1,7 @@
 package vn.edu.hcmus.stepic.Service;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.http.HttpStatus;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,8 +17,6 @@ import vn.edu.hcmus.stepic.Base.ResponseBody;
 import vn.edu.hcmus.stepic.Domain.ProductEntity;
 import vn.edu.hcmus.stepic.Domain.UserEntity;
 import vn.edu.hcmus.stepic.Repository.UserRepository;
-
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -76,11 +74,11 @@ public class UserService implements UserDetailsService{
     }
     
     @Transactional
-    public ResponseEntity addProduct(ProductEntity product) {
-        ResponseEntity<?> user = getCurrentUser();
-        UserEntity userEntity = (UserEntity) user.getBody();
-        userEntity.getOwnedGame().add(product);
-        return null;
+    public void addProduct(ProductEntity product) {
+        Authentication authentication = getCurrentAuthentication();
+        UserEntity user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User not present"));
+        user.getOwnedGame().add(product);
     }
 
 }
