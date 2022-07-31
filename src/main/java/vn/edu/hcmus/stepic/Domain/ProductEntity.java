@@ -49,7 +49,7 @@ public class ProductEntity {
 
     private float rating;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
-    private List<String> genres;
+//    @Type(type = "jsonb")
+//    @Column(columnDefinition = "jsonb")
+//    private List<String> genres;
 }
