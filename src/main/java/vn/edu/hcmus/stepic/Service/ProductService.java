@@ -39,6 +39,7 @@ public class ProductService {
         updateProduct.setLogoImage(product.getLogoImage());
         updateProduct.setGameImage(product.getGameImage());
         updateProduct.setDescription(product.getDescription());
+        updateProduct.setShortDesc(product.getShortDesc());
         updateProduct.setPublishDate(product.getPublishDate());
         updateProduct.setPurchaseAmount(product.getPurchaseAmount());
         updateProduct.setRating(product.getRating());

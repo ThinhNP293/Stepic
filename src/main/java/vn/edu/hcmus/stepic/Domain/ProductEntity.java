@@ -42,6 +42,8 @@ public class ProductEntity {
 
     private String description;
 
+    private String shortDesc;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishDate;
 
