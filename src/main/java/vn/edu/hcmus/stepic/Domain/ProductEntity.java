@@ -10,19 +10,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import org.hibernate.annotations.TypeDef;
 
 @Entity
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="product_tbl")
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +54,7 @@ public class ProductEntity {
 
     private float rating;
 
-//    @Type(type = "jsonb")
-//    @Column(columnDefinition = "jsonb")
-//    private List<String> genres;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private List<String> genres;
 }
